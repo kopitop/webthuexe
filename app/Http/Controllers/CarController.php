@@ -38,9 +38,10 @@ class CarController extends Controller
             ];
             foreach($columns as $column)
             {
-              $query->orWhere($column, 'like', '%' . $keyword . '%');
+              $query->orWhere($column, 'like', '%' . (string)$keyword . '%');
             }
         }
+        \Log::debug('ok');
 
         $sortBy = $request->input('sort_by');
         $sortAsc = !is_null($request->input('asc')) ? ($request->input('asc') ? 'asc' : 'desc') : 'asc';
