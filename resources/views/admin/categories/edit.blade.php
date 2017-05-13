@@ -38,7 +38,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Danh mục</h3>
           </div>
-          <form method="POST" action="/categories/{{ $category->id }}">
+          <form method="POST" action="/quan-tri/categories/{{ $category->id }}">
             <div class="box-body">
               {{ method_field('PUT') }}
               {{ csrf_field() }}

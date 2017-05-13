@@ -11,19 +11,6 @@
 |
 */
 
-
-Route::group(['domain' => 'admin.chothuexe.dev', 'namespace' => 'Admin'], function() {
-    Auth::routes();
-    Route::group(['middleware' => ['auth', 'check_role']], function () {
-        Route::get('/', 'HomeController@index');
-
-        Route::resource('/users', 'UserController');
-        Route::resource('/categories', 'CategoryController');
-        Route::resource('/cars', 'CarController');
-        Route::resource('/orders', 'OrderController');
-    });
-});
-
 Route::group(['domain' => 'enigmatic-escarpment-34531.herokuapp.com'], function() {
     Auth::routes();
     Route::get('/', function () {
@@ -39,4 +26,16 @@ Route::group(['domain' => 'enigmatic-escarpment-34531.herokuapp.com'], function(
     Route::get('/ca-nhan', 'AccountController@index');
     Route::delete('/ca-nhan/{id}', 'AccountController@destroy');
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::group(['prefix' => 'quan-tri', 'namespace' => 'Admin'], function() {
+        Auth::routes();
+        Route::group(['middleware' => ['auth', 'check_role']], function () {
+            Route::get('/', 'HomeController@index');
+
+            Route::resource('/users', 'UserController');
+            Route::resource('/categories', 'CategoryController');
+            Route::resource('/cars', 'CarController');
+            Route::resource('/orders', 'OrderController');
+        });
+    });
 });

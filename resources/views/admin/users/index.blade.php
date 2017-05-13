@@ -56,11 +56,11 @@
                 @foreach ($users as $user)
                   <tr>
                     <td>{{ $user->id }}</td>
-                    <td><a href="/users/{{ $user->id }}">{{ $user->name }}</a></td>
+                    <td><a href="/quan-tri/users/{{ $user->id }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>@if ($user->role) {{ 'Admin' }} @else {{ 'Member' }} @endif</td>
                     <td style="display: flex">
-                      <a href="/users/{{ $user->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
+                      <a href="/quan-tri/users/{{ $user->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="
                         margin-top: 0;
                       "
@@ -69,7 +69,7 @@
                           document.getElementById('delete-form-{{ $user->id }}').submit();">
                         Xoá
                       </a>
-                      <form id="delete-form-{{ $user->id }}" action="/users/{{ $user->id }}" method="POST" style="display: none;">
+                      <form id="delete-form-{{ $user->id }}" action="/quan-tri/users/{{ $user->id }}" method="POST" style="display: none;">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                       </form>
@@ -98,8 +98,8 @@
 @endsection
 
 @push('script')
-<script type="text/javascript" src="admin/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="admin/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/dataTables.bootstrap.min.js"></script>
 <script>
   $('#example2').DataTable();
 </script>

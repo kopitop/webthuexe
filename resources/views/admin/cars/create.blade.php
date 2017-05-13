@@ -38,7 +38,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Xe</h3>
           </div>
-          <form method="POST" action="/cars" enctype="multipart/form-data">
+          <form method="POST" action="/quan-tri/cars" enctype="multipart/form-data">
             <div class="box-body">
               {{ csrf_field() }}
               <div class="input-group">

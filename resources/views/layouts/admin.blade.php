@@ -334,7 +334,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="@if($url == 'users') {{ "active" }} @endif treeview">
+        <li class="@if($url == 'quan-tri/users') {{ "active" }} @endif treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Quản lý User</span>
             <span class="pull-right-container">
@@ -342,11 +342,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/users"><i class="fa fa-circle-o"></i> Danh sách User </a></li>
-            <li><a href="/users/create"><i class="fa fa-circle-o"></i> Thêm mới User</a></li>
+            <li class="active"><a href="/quan-tri/users"><i class="fa fa-circle-o"></i> Danh sách User </a></li>
+            <li><a href="/quan-tri/users/create"><i class="fa fa-circle-o"></i> Thêm mới User</a></li>
           </ul>
         </li>
-        <li class="treeview @if($url == 'categories') {{ "active" }} @endif ">
+        <li class="treeview @if($url == 'quan-tri/categories') {{ "active" }} @endif ">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Quản lý Danh mục</span>
             <span class="pull-right-container">
@@ -354,11 +354,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/categories"><i class="fa fa-circle-o"></i> Danh sách Danh mục </a></li>
-            <li><a href="/categories/create"><i class="fa fa-circle-o"></i> Thêm mới Danh mục</a></li>
+            <li class="active"><a href="/quan-tri/categories"><i class="fa fa-circle-o"></i> Danh sách Danh mục </a></li>
+            <li><a href="/quan-tri/categories/create"><i class="fa fa-circle-o"></i> Thêm mới Danh mục</a></li>
           </ul>
         </li>
-        <li class="treeview @if($url == 'cars') {{ "active" }} @endif ">
+        <li class="treeview @if($url == 'quan-tri/cars') {{ "active" }} @endif ">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Quản lý xe
              </span>
@@ -367,11 +367,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/cars/"><i class="fa fa-circle-o"></i> Danh sách xe </a></li>
-            <li><a href="/cars/create"><i class="fa fa-circle-o"></i> Thêm mới xe</a></li>
+            <li class="active"><a href="/quan-tri/cars/"><i class="fa fa-circle-o"></i> Danh sách xe </a></li>
+            <li><a href="/quan-tri/cars/create"><i class="fa fa-circle-o"></i> Thêm mới xe</a></li>
           </ul>
         </li>
-        <li class="treeview @if($url == 'orders') {{ "active" }} @endif ">
+        <li class="treeview @if($url == 'quan-tri/orders') {{ "active" }} @endif ">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Quản lý đơn hàng</span>
             <span class="pull-right-container">
@@ -379,7 +379,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/orders/"><i class="fa fa-circle-o"></i> Danh sách hoá đơn </a></li>
+            <li class="active"><a href="/quan-tri/orders/"><i class="fa fa-circle-o"></i> Danh sách hoá đơn </a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>

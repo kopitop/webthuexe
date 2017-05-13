@@ -42,12 +42,12 @@
                                     </li>
                                     @if (Auth::guest())
                                     <li class="">
-                                        <a href="{{ route('register') }}">
+                                        <a href="/register">
                                             <div class="button-t"><span>Tạo tài khoản</span></div>
                                         </a>
                                     </li>
                                     <li class="last">
-                                        <a href="{{ route('login') }}">
+                                        <a href="/login">
                                             <div class="button-t"><span>Đăng nhập</span></div>
                                         </a>
                                     </li>
@@ -58,11 +58,11 @@
                                         </a>
                                         <ul class="dropdown-menu" role="menu">
                                             @if (Auth::user()->isAdmin())
-                                            <li><a href="http://admin.chothuexe.dev">Đi đến trang Admin</a></li>
+                                            <li><a href="{{ config('app.url').'/quan-tri' }}">Đi đến trang Admin</a></li>
                                             @endif
                                             <li><a href="/ca-nhan">Đi đến trang Quản lý tài khoản</a></li>
                                             <li>
-                                                <a href="{{ route('logout') }}"
+                                                <a href="/logout"
                                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                                 Logout

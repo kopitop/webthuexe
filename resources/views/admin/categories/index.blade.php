@@ -56,11 +56,11 @@
                 @foreach ($categories as $category)
                   <tr>
                     <td>{{ $category->id }}</td>
-                    <td><a href="/categories/{{ $category->id }}/edit">{{ $category->name }}</a></td>
+                    <td><a href="/quan-tri/categories/{{ $category->id }}/edit">{{ $category->name }}</a></td>
                     <td>{{ $category->title }}</td>
-                    <td><a href="/categories/{{ $category->parent['id'] }}/edit">{{ $category->parent['title'] }}</a></td>
+                    <td><a href="/quan-tri/categories/{{ $category->parent['id'] }}/edit">{{ $category->parent['title'] }}</a></td>
                     <td style="display: flex">
-                      <a href="/categories/{{ $category->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
+                      <a href="/quan-tri/categories/{{ $category->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="
                         margin-top: 0;
                       "
@@ -69,7 +69,7 @@
                           document.getElementById('delete-form-{{ $category->id }}').submit();">
                         Xoá
                       </a>
-                      <form id="delete-form-{{ $category->id }}" action="/categories/{{ $category->id }}" method="POST" style="display: none;">
+                      <form id="delete-form-{{ $category->id }}" action="/quan-tri/categories/{{ $category->id }}" method="POST" style="display: none;">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                       </form>

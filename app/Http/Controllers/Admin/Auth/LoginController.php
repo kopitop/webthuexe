@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/quan-tri/home';
 
     /**
      * Create a new controller instance.
@@ -62,6 +62,6 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('http://chothuexe.dev');
+        return redirect(config('app.url') . '/quan-tri');
     }
 }

@@ -22,8 +22,8 @@
             <div class="box-header">
               <h3 class="box-title">Hover Data Table</h3>
               <div style="display:flex">
-                <a href="/cars/?withSuspend=true" class="btn btn-block btn-primary btn-sm" style="margin-right:15px; width: 200px">Xem cả xe đã ngừng sử dụng</a>
-                <a href="/cars/" class="btn btn-block btn-info btn-sm" style="width: 200px; margin-top: 0;">Chỉ xem xe đang sử dụng</a>
+                <a href="/quan-tri/cars/?withSuspend=true" class="btn btn-block btn-primary btn-sm" style="margin-right:15px; width: 200px">Xem cả xe đã ngừng sử dụng</a>
+                <a href="/quan-tri/cars/" class="btn btn-block btn-info btn-sm" style="width: 200px; margin-top: 0;">Chỉ xem xe đang sử dụng</a>
                 
               </div>
             </div>
@@ -64,14 +64,14 @@
                 @foreach ($cars as $car)
                   <tr>
                     <td>{{ $car->id }}</td>
-                    <td><a href="/cars/{{ $car->id }}/edit">{{ $car->name }}</a></td>
+                    <td><a href="/quan-tri/cars/{{ $car->id }}/edit">{{ $car->name }}</a></td>
                     <td>{{ $car->title }}</td>
-                    <td><a href="/categories/{{ $car->category['id'] }}/edit">{{ $car->category['title'] }}</a></td>
+                    <td><a href="/quan-tri/categories/{{ $car->category['id'] }}/edit">{{ $car->category['title'] }}</a></td>
                     <td><img src="/uploads/{{ $car->img }}" style="width: 50px; height= 50px"></td>
                     <td>{{ str_limit($car->desc, 100) }}</td>
                     <td>{{ $car->status == 0 ? 'Ngừng cho thuê' : 'Sẵn sàng cho thuê' }}</td>
                     <td style="display: flex">
-                      <a href="/cars/{{ $car->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
+                      <a href="quan-tri/cars/{{ $car->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="
                         margin-top: 0;
                       "
@@ -80,7 +80,7 @@
                           document.getElementById('delete-form-{{ $car->id }}').submit();">
                         Ngừng
                       </a>
-                      <form id="delete-form-{{ $car->id }}" action="/cars/{{ $car->id }}" method="POST" style="display: none;">
+                      <form id="delete-form-{{ $car->id }}" action="/quan-tri/cars/{{ $car->id }}" method="POST" style="display: none;">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                       </form>
@@ -111,8 +111,8 @@
 @endsection
 
 @push('script')
-<script type="text/javascript" src="admin/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="admin/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/dataTables.bootstrap.min.js"></script>
 <script>
   $('#example2').DataTable();
 </script>

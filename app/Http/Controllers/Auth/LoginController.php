@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('http://chothuexe.dev');
+        return redirect(config('app.url'));
     }
 
 

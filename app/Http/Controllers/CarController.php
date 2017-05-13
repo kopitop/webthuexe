@@ -24,7 +24,7 @@ class CarController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('http://chothuexe.dev');
+            return redirect(config('app.url'));
         }
 
         $query = Car::select('*');

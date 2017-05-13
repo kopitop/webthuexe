@@ -17,7 +17,7 @@ class CheckRole
     {
         if (! $request->user()->isAdmin()) {
             // Redirect...
-            return redirect('http://chothuexe.dev/login');
+            return redirect(config('app.url') . '/quan-tri');
         }
         return $next($request);
     }

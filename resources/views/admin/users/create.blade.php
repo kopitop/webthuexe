@@ -38,7 +38,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">User Profile</h3>
           </div>
-          <form method="POST" action="/users">
+          <form method="POST" action="/quan-tri/users">
             <div class="box-body">
               {{ csrf_field() }}
               <div class="input-group">

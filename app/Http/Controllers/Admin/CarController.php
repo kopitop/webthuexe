@@ -142,10 +142,10 @@ class CarController extends Controller
             }
 
             if ($car->save()) {
-                return redirect('/cars')->withSuccess('Bạn đã chỉnh sửa xe có ID là ' . $id . 'thành công');
+                return redirect('/quan-tri/cars')->withSuccess('Bạn đã chỉnh sửa xe có ID là ' . $id . 'thành công');
             }
         } catch (Exception $e) {
-            return redirect('/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
+            return redirect('quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }
     }
 

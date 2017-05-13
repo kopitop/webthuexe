@@ -23,6 +23,8 @@ class Controller extends BaseController
 
         $this->viewData['cars'] = Car::with('category')->where('status', '!=', config('vars.cars.status.suspend'))->get();
 
-        $this->viewData['url'] = request()->route()->uri;
+        if (request()->route()) {
+            $this->viewData['url'] = request()->route()->uri;
+        }
     }
 }

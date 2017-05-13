@@ -28,7 +28,7 @@
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="/orders/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/quan-tri/orders/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -43,7 +43,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="/cars/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/quan-tri/cars/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -58,7 +58,7 @@
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="/users/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/quan-tri/users/" class="small-box-footer"> Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -73,7 +73,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="/orders/" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/quan-tri/orders/" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

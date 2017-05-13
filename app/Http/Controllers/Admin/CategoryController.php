@@ -54,10 +54,10 @@ class CategoryController extends Controller
             }
 
             if (Category::create($input)) {
-                return redirect('/categories')->withSuccess('Bạn đã khởi tạo danh mục thành công');
+                return redirect('/quan-tri/categories')->withSuccess('Bạn đã khởi tạo danh mục thành công');
             }
         } catch (Exception $e) {
-            return redirect('/categories')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
+            return redirect('/quan-tri/categories')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }
     }
 

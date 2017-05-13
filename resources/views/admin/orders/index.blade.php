@@ -22,8 +22,8 @@
             <div class="box-header">
               <h3 class="box-title">Hover Data Table</h3>
               <div style="display:flex">
-                <a href="/orders/?today=true" class="btn btn-block btn-primary btn-sm" style="margin-right:15px; width: 200px">Chỉ xem hoá đơn ngày hôm nay</a>
-                <a href="/orders/" class="btn btn-block btn-info btn-sm" style="width: 200px; margin-top: 0;">Xem tất cả hoá đơn</a>
+                <a href="/quan-tri/orders/?today=true" class="btn btn-block btn-primary btn-sm" style="margin-right:15px; width: 200px">Chỉ xem hoá đơn ngày hôm nay</a>
+                <a href="/quan-tri/orders/" class="btn btn-block btn-info btn-sm" style="width: 200px; margin-top: 0;">Xem tất cả hoá đơn</a>
                 
               </div>
             </div>
@@ -64,8 +64,8 @@
                 @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
-                    <td><a href="/users/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
-                    <td><a href="/cars/{{ $order->car->id }}/edit">{{ $order->car->title }}</a></td>
+                    <td><a href="/quan-tri/users/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
+                    <td><a href="/quan-tri/cars/{{ $order->car->id }}/edit">{{ $order->car->title }}</a></td>
                     <td>Từ {{ $order->begin }} đến {{ $order->end }}</td>
                     <td>{{ $order->total }}</td>
                     <td>{{ $order->car->status == 0 ? 'Ngừng cho thuê' : 'Sẵn sàng cho thuê' }}</td>
@@ -79,7 +79,7 @@
                           document.getElementById('approved-form-{{ $order->id }}').submit();">
                         Xác nhận
                       </a>
-                      <form id="approved-form-{{ $order->id }}" action="/orders/{{ $order->id }}" method="POST" style="display: none;">
+                      <form id="approved-form-{{ $order->id }}" action="/quan-tri/orders/{{ $order->id }}" method="POST" style="display: none;">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
                       </form>
@@ -91,7 +91,7 @@
                           document.getElementById('rejected-form-{{ $order->id }}').submit();">
                         Ngừng
                       </a>
-                      <form id="rejected-form-{{ $order->id }}" action="/orders/{{ $order->id }}" method="POST" style="display: none;">
+                      <form id="rejected-form-{{ $order->id }}" action="/quan-tri/orders/{{ $order->id }}" method="POST" style="display: none;">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                       </form>
@@ -122,8 +122,8 @@
 @endsection
 
 @push('script')
-<script type="text/javascript" src="admin/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="admin/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/plugins/dataTables.bootstrap.min.js"></script>
 <script>
   $('#example2').DataTable();
 </script>

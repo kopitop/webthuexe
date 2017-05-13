@@ -38,7 +38,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Danh mục</h3>
           </div>
-          <form method="POST" action="/cars/{{ $car->id }}" enctype="multipart/form-data">
+          <form method="POST" action="/quan-tri/quan-tri/cars/{{ $car->id }}" enctype="multipart/form-data">
             <div class="box-body">
               {{ method_field('PUT') }}
               {{ csrf_field() }}

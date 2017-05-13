@@ -28,11 +28,11 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="/quan-tri"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Xin vui lòng đăng ký</p>
 
     <form role="form" method="POST" action="">
       {{ csrf_field() }}
@@ -84,8 +84,8 @@
     </div>
     <!-- /.social-auth-links -->
 
-    <a class="btn btn-link" href="/password/reset">I forgot my password</a><br>
-    <a href="/login"class="text-center">Tôi có tài khoản rồi</a>
+    <a class="btn btn-link" href="/quan-tri/password/reset">I forgot my password</a><br>
+    <a href="/quan-tri/login"class="text-center">Tôi có tài khoản rồi</a>
 
   </div>
   <!-- /.login-box-body -->
