@@ -7,7 +7,7 @@
     <div class="about-group">
         <div class="about-top">
             <div class="grid images_3_of_1">
-                <img src="/uploads/{{ $car->img }}" alt="">
+                <img src="/anh-upload/{{ $car->img }}" alt="">
             </div>
             <div class="grid span_2_of_3">
                 {!! $car->desc !!}
@@ -26,7 +26,7 @@
             <div class="section group">
                 @foreach ($relatedCars->take(3) as $c)
                 <div class="grid_1_of_3 images_1_of_3 relatedCar">
-                    <img src="/uploads/{{ $c->img }}" alt="">
+                    <img src="/anh-upload/{{ $c->img }}" alt="">
                     <h4><a href="/xe/{{ $c->slug }}-{{ $c->id }}">{{ $c->title }}</a></h4>
                 </div>
                 @endforeach

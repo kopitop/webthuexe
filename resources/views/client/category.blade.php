@@ -10,7 +10,7 @@
                 @foreach($carsByCat as $c)
                 <div class="grid_1_of_3 images_1_of_3">
                     <div class="grid_1">
-                        <a href="/xe/{{ $c->slug }}-{{ $c->id }}"><img style="height:136px" src="/uploads/{{ $c->img }}" title="continue reading" alt=""></a>
+                        <a href="/xe/{{ $c->slug }}-{{ $c->id }}"><img style="height:136px" src="/anh-upload/{{ $c->img }}" title="continue reading" alt=""></a>
                         <div class="grid_desc">
                             <p class="title">{{ $c->title }}</p>
                             <div class="price">

@@ -58,7 +58,7 @@ class CarController extends Controller
             if ($request->file('photo')->isValid()) {
                 //upload
                 $photo = $request->file('photo');
-                $destinationPath = 'uploads'; // upload path
+                $destinationPath = 'anh-upload'; // upload path
                 $extension = $photo->getClientOriginalExtension(); // getting image extension
                 $fileName = str_random(40).'.'.$extension; // renameing image
                 $photo->move($destinationPath, $fileName); // uploading file to given path
@@ -68,10 +68,10 @@ class CarController extends Controller
             $input['status'] = config('vars.car.status.available');
 
             if (Car::create($input)) {
-                return back()->withSuccess('Bạn đã thành công');
+                return redirect('/quan-tri/cars')->withSuccess('Bạn đã thành công');
             }
         } catch (Exception $e) {
-            return back()->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
+            return redirect('/quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }
     }
 
@@ -134,7 +134,7 @@ class CarController extends Controller
             if ($request->file('photo')->isValid()) {
                 //upload
                 $photo = $request->file('photo');
-                $destinationPath = 'uploads'; // upload path
+                $destinationPath = 'anh-upload'; // upload path
                 $extension = $photo->getClientOriginalExtension(); // getting image extension
                 $fileName = str_random(40).'.'.$extension; // renameing image
                 $photo->move($destinationPath, $fileName); // uploading file to given path
@@ -146,7 +146,7 @@ class CarController extends Controller
                 return redirect('/quan-tri/cars')->withSuccess('Bạn đã chỉnh sửa xe có ID là ' . $id . 'thành công');
             }
         } catch (Exception $e) {
-            return redirect('quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
+            return redirect('/quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }
     }
 
@@ -167,10 +167,10 @@ class CarController extends Controller
             $car->status = config('vars.car.status.suspend');
 
             if ($car->save()) {
-                return back()->withSuccess('Bạn đã ngừng sử dụng xe có ID là ' . $id . 'thành công');
+                return redirect('/quan-tri/cars')->withSuccess('Bạn đã ngừng sử dụng xe có ID là ' . $id . 'thành công');
             }
         } catch (Exception $e) {
-            return back()->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
+            return redirect('/quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }
     }
 }
