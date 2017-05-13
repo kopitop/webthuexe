@@ -65,6 +65,7 @@ class CarController extends Controller
 
                 $input['img'] = $fileName;
             }
+            $input['status'] = config('vars.car.status.available');
 
             if (Car::create($input)) {
                 return back()->withSuccess('Bạn đã thành công');
