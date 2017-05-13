@@ -34,7 +34,7 @@ class CarController extends Controller
         \Log::debug($keyword);
         if ($keyword) {
             $columns = [
-                'title', 'name', 'desc', 'price'
+                'title', 'name', 'desc'
             ];
             foreach($columns as $column)
             {
