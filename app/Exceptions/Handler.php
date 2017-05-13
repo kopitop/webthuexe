@@ -60,6 +60,10 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest($request->fullUrl() . '/login');
+        if ($request->segments(1) == 'quan-tri') {
+            return redirect()->guest('/quan-tri/login');
+        }
+
+        return redirect()->guest('/login');
     }
 }

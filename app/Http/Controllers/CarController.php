@@ -31,7 +31,7 @@ class CarController extends Controller
 
         $keyword = $request->input('keyword');
 
-        \Log::debug('keyword', $keyword);
+        \Log::debug($keyword);
         if ($keyword) {
             $columns = [
                 'title', 'name', 'desc', 'price'
