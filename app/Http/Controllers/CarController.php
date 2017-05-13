@@ -31,12 +31,15 @@ class CarController extends Controller
 
         $keyword = $request->input('keyword');
 
-        $columns = [
-            'title', 'name', 'desc', 'price'
-        ];
-        foreach($columns as $column)
-        {
-          $query->orWhere($column, 'like', '%' . $keyword . '%');
+        \Log::debug('keyword', $keyword);
+        if ($keyword) {
+            $columns = [
+                'title', 'name', 'desc', 'price'
+            ];
+            foreach($columns as $column)
+            {
+              $query->orWhere($column, 'like', '%' . $keyword . '%');
+            }
         }
 
         $sortBy = $request->input('sort_by');

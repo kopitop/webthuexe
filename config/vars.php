@@ -16,7 +16,7 @@ return [
         ]
     ],
     'regex' => [
-        'idFromSlug' => '/(?(?<=.))(?<=-)\d+|\d+$/',
+        'idFromSlug' => '/(?(?<=.))(?<=-)\d+$|\d+$/',
         'danh-muc-slug' => '/^danh-muc\/.+$/',
         'xe-slug' => '/^xe.*$/',
     ],
