@@ -127,7 +127,7 @@
                                                     <div class="div_img">
                                                         @if ($category->cars->count() >= 1)
                                                         {{ \Log::debug($category->cars->random(1)) }}
-                                                        <img src="{{ @if (property_exists($category->cars->take(1), 'img')) \Storage::url($category->cars->random(1)->img) }}" alt="Cars" title="Cars" width="60" height="39">
+                                                        <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->random(1)->img) }}" @endif alt="Cars" title="Cars" width="60" height="39">
 
                                                         @endif
                                                     </div>
