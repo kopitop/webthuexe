@@ -126,9 +126,9 @@
                                                     <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
                                                     <div class="div_img">
                                                         @if ($category->cars->count() >= 1)
+                                                        {{ \Log::debug($category->cars->random(1)) }}
                                                         <img src="{{ \Storage::url($category->cars->random(1)->img) }}" alt="Cars" title="Cars" width="60" height="39">
 
-                                                        {{ \Log::debug($category->cars->random(1)) }}
                                                         @endif
                                                     </div>
                                                     <div class="clear"></div>
