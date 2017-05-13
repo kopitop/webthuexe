@@ -36,6 +36,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if ($orders)
                 @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
@@ -59,6 +60,7 @@
                     </td>
                   </tr>
                 @endforeach
+                @endif
                 </tbody>
                 <tfoot>
                 <tr>

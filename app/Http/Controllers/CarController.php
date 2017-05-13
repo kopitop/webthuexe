@@ -89,7 +89,7 @@ class CarController extends Controller
         preg_match(config('vars.regex.idFromSlug'), $slug, $matches);
 
         \Log::debug($matches);
-        $id = $matches ? $matches[0] : nul;
+        $id = $matches ? $matches[0] : null;
         
         $this->viewData['car'] = $car->findOrFail($id);
         $this->viewData['relatedCars'] = $category->findOrFail($this->viewData['car']->category_id)->cars;
