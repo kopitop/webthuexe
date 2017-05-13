@@ -126,7 +126,7 @@
                                                     <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
                                                     <div class="div_img">
                                                         @if ($category->cars->count() >= 1)
-                                                        <img src="{{ \Storage::url($category->cars->take(1)->img) }}" alt="Cars" title="Cars" width="60" height="39">
+                                                        <img src="{{ \Storage::url($category->cars->take(1)['img']) }}" alt="Cars" title="Cars" width="60" height="39">
                                                         @endif
                                                     </div>
                                                     <div class="clear"></div>
