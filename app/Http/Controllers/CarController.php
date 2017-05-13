@@ -83,7 +83,9 @@ class CarController extends Controller
     public function show(Category $category, Car $car, $slug)
     {
         preg_match(config('vars.regex.idFromSlug'), $slug, $matches);
-        $id = $matches[0];
+
+        \Log::debug($matches);
+        $id = $matches ? $matches[0] : nul;
         
         $this->viewData['car'] = $car->findOrFail($id);
         $this->viewData['relatedCars'] = $category->findOrFail($this->viewData['car']->category_id)->cars;
