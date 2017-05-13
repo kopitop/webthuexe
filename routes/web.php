@@ -24,7 +24,7 @@ Route::group(['domain' => 'admin.chothuexe.dev', 'namespace' => 'Admin'], functi
     });
 });
 
-Route::group(['domain' => 'chothuexe.dev'], function() {
+Route::group(['domain' => 'enigmatic-escarpment-34531.herokuapp.com'], function() {
     Auth::routes();
     Route::get('/', function () {
         return redirect('/home');
