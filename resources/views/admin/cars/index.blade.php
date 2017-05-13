@@ -67,11 +67,11 @@
                     <td><a href="/quan-tri/cars/{{ $car->id }}/edit">{{ $car->name }}</a></td>
                     <td>{{ $car->title }}</td>
                     <td><a href="/quan-tri/categories/{{ $car->category['id'] }}/edit">{{ $car->category['title'] }}</a></td>
-                    <td><img src="/anh-upload/{{ $car->img }}" style="width: 50px; height= 50px"></td>
+                    <td><img src="{{ \Storage::url($car->img) }}" style="width: 50px; height= 50px"></td>
                     <td>{{ str_limit($car->desc, 100) }}</td>
                     <td>{{ $car->status == 0 ? 'Ngừng cho thuê' : 'Sẵn sàng cho thuê' }}</td>
                     <td style="display: flex">
-                      <a href="quan-tri/cars/{{ $car->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
+                      <a href="/quan-tri/cars/{{ $car->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="
                         margin-top: 0;
                       "

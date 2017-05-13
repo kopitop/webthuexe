@@ -125,7 +125,7 @@
                                                 <div class="first-list">
                                                     <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
                                                     <div class="div_img">
-                                                        <img src="/anh-upload/{{ $category->cars()->first()->img }}" alt="Cars" title="Cars" width="60" height="39">
+                                                        <img src="{{ \Storage::url($category->car->img) }}" alt="Cars" title="Cars" width="60" height="39">
                                                     </div>
                                                     <div class="clear"></div>
                                                 </div>
@@ -147,12 +147,12 @@
                                         @if ($cars->count() >= 4)
                                             <div class="col_1_of_2 span_1_of_2">
                                                 @foreach ($cars->random(4) as $car)
-                                                    <img src="/anh-upload/{{ $car->img }}" alt=""/>
+                                                    <img src="{{ \Storage::url($car->img) }}" alt=""/>
                                                 @endforeach
                                             </div>
                                             <div class="col_1_of_2 span_1_of_2">
                                                 @foreach ($cars->random(4) as $car)
-                                                    <img src="/anh-upload/{{ $car->img }}" alt=""/>
+                                                    <img src="{{ \Storage::url($car->img) }}" alt=""/>
                                                 @endforeach
                                             </div>
                                             <div class="clear"></div>

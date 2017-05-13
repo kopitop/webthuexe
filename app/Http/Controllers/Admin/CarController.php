@@ -46,24 +46,26 @@ class CarController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->validate($request, [
+            $validator = \Validator::make($request->all(), [
                 'name' => 'required|max:255|alpha_dash',
                 'title' => 'required|max:255',
                 'price' => 'required|numeric|min:1',
                 'category_id' => 'required|exists:categories,id',
             ]);
 
+            if ($validator->fails()) {
+                return redirect('/quan-tri/cars');
+            }
+
             $input = $request->input();
             $input['slug'] = str_slug($request->input('title'));
+            $input['desc'] = $request->input('desc');
             if ($request->file('photo')->isValid()) {
-                //upload
-                $photo = $request->file('photo');
-                $destinationPath = 'anh-upload'; // upload path
-                $extension = $photo->getClientOriginalExtension(); // getting image extension
-                $fileName = str_random(40).'.'.$extension; // renameing image
-                $photo->move($destinationPath, $fileName); // uploading file to given path
+                $path = $request->file('photo')->store('uploads');
 
-                $input['img'] = $fileName;
+                \Log::debug($path);
+
+                $input['img'] = $path;
             }
             $input['status'] = config('vars.car.status.available');
 
@@ -83,7 +85,7 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -110,18 +112,26 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $this->validate($request, [
+            $validator = \Validator::make($request->all(), [
                 'name' => 'max:255|alpha_dash',
                 'title' => 'max:255',
                 'price' => 'numeric|min:1',
                 'category_id' => 'exists:categories,id',
             ]);
 
+            if ($validator->fails()) {
+                return redirect('/quan-tri/cars');
+            }
+
+            \Log::debug('validate ok');
+
             $car = Car::findOrFail($id);
 
             if ($car->status == config('vars.car.status.rented')) {
-                return back()->withErrors('Xe này đang được cho thuê');
+                return redirect('/quan-tri/cars')->withErrors('Xe này đang được cho thuê');
             }
+
+            \Log::debug('rented ok');
 
             $car->name = $request->input('name') ? $request->input('name') : $car->name;
             $car->title = $request->input('title') ? $request->input('title') : $car->title;
@@ -132,19 +142,19 @@ class CarController extends Controller
             $car->category_id = $request->input('category_id') ? $request->input('category_id') : $car->category_id;
 
             if ($request->file('photo')->isValid()) {
-                //upload
-                $photo = $request->file('photo');
-                $destinationPath = 'anh-upload'; // upload path
-                $extension = $photo->getClientOriginalExtension(); // getting image extension
-                $fileName = str_random(40).'.'.$extension; // renameing image
-                $photo->move($destinationPath, $fileName); // uploading file to given path
+                $path = $request->file('photo')->store('uploads');
 
-                $car->img = $fileName;
+                \Log::debug($path);
+
+                $car->img = $path;
             }
 
             if ($car->save()) {
                 return redirect('/quan-tri/cars')->withSuccess('Bạn đã chỉnh sửa xe có ID là ' . $id . 'thành công');
             }
+
+            \Log::debug('save fail');
+
         } catch (Exception $e) {
             return redirect('/quan-tri/cars')->withErrors('Lỗi hệ thống đã xảy ra, vui lòng liên hệ Admin');
         }

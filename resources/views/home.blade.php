@@ -8,7 +8,7 @@
             <li>
                 <a href="/xe/{{ $car->slug }}-{{ $car->id }}">
                     <canvas ></canvas>
-                    <img style="width: 768px" class="img-responsive" src="anh-upload/{{ $car->img }}" alt="Hình ảnh bị lỗi" >
+                    <img style="width: 768px" class="img-responsive" src="{{ \Storage::url($car->img) }}" alt="Hình ảnh bị lỗi" >
                 </a>
             </li>
             @endforeach
@@ -26,7 +26,7 @@
                 @foreach ($cars->sortByDesc('created_at')->take(3) as $car)
                 <div class="grid_1_of_3 images_1_of_3">
                     <div class="grid_1">
-                        <a href="/xe/{{ $car->slug }}-{{ $car->id }}"><img style="height:136px" src="anh-upload/{{ $car->img }}" title="continue reading" alt=""></a>
+                        <a href="/xe/{{ $car->slug }}-{{ $car->id }}"><img style="height:136px" src="{{ \Storage::url($car->img) }}" title="continue reading" alt=""></a>
                         <div class="grid_desc">
                             <p class="title">{{ $car->title }}</p>
                             <p class="title1">{{ str_limit($car->desc, 50) }}</p>
@@ -56,7 +56,7 @@
                 @foreach ($cars->sortBy('price')->take(3) as $car)
                 <div class="grid_1_of_3 images_1_of_3">
                     <div class="grid_1">
-                        <a href="/xe/{{ $car->slug }}-{{ $car->id }}"><img style="height:136px" src="anh-upload/{{ $car->img }}" title="continue reading" alt=""></a>
+                        <a href="/xe/{{ $car->slug }}-{{ $car->id }}"><img style="height:136px" src="{{ \Storage::url($car->img) }}" title="continue reading" alt=""></a>
                         <div class="grid_desc">
                             <p class="title">{{ $car->title }}</p>
                             <p class="title1">{{ str_limit($car->desc, 50) }}</p>

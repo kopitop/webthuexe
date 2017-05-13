@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,10 +57,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_KEY'),
-            'secret' => env('AWS_SECRET'),
-            'region' => env('AWS_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+            'key' => 'AKIAJU5A5ZVCSIPJMP4A',
+            'secret' => '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',
+            'region' => 'us-east-2',
+            'bucket' => 'webchothuexe',
+            'visibility' => 'public',
         ],
 
     ],

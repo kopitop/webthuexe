@@ -14,7 +14,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $this->viewData['orders'] = \Auth::user()->orders;
+        $this->viewData['orders'] = \Auth::check() ? \Auth::user()->orders : null;
 
         return view('client.account', $this->viewData);
     }
