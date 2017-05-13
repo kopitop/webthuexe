@@ -16,11 +16,11 @@
                             <div class="price">
                                 <span class="reducedfrom">{{ number_format($c->price, 0, ", ", ".") }} đ/ngày</span>
                             </div>
-                            <div class="cart-button">
+                        <div class="cart-button">
                                 <div class="cart">
-                                    <button class="button"><span>Đặt xe này</span></button>
+                                    <a href="/xe/{{ $c->slug }}-{{ $c->id }}#dat-xe" class="button"><span>Đặt xe này</span></a>
                                 </div>
-                                <button class="button"><span>Xem</span></button>
+                                <a href="/xe/{{ $c->slug }}-{{ $c->id }}" class="button"><span>Xem</span></a>
                                 <div class="clear"></div>
                             </div>
                         </div>
