@@ -11,7 +11,7 @@ return [
         'slug',
     ],
     'html' => [
-        'label' => 'name',
+        'label' => 'title',
         'href'  => 'id'
     ],
     'dropdown' => [

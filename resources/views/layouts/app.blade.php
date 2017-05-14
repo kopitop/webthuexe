@@ -23,6 +23,7 @@
         <link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
     </head>
     <body>
+
         <div class="header-bg" id="app">
             <div class="wrap">
                 <div class="h-bg">
@@ -108,8 +109,15 @@
                             <div class="top-nav">
                                 <ul>
                                     <li @if($url == 'home' || $url == '') {{ 'class="active"' }} @endif><a href="/">Trang chủ</a></li>
-                                    <li @if(preg_match(config('vars.regex.danh-muc-slug'), $url)) {{ "class=active" }} @endif><a href="/danh-muc">Danh mục</a></li>
-                                    <li @if(preg_match(config('vars.regex.xe-slug'), $url)) {{ "class=active" }} @endif><a href="/xe">Xe</a></li>
+
+                                    @foreach ($categories as $category)
+
+                                    @if ($category->parent_id === 0)
+                                    <li><a href="/danh-muc/{{ $category->slug }}-{{ $category->id }}">{{ $category->title }}</a></li>
+
+                                    @endif
+                                    @endforeach
+                                    <li @if(preg_match(config('vars.regex.danh-muc-slug'), $url)) {{ "class=active" }} @endif><a href="/danh-muc">Tất Ca</a></li>
                                 </ul>
                                 <div class="clear"></div>
                             </div>
@@ -120,19 +128,30 @@
                                 <div class="header-para">
                                     <div class="categories">
                                         <div class="list-categories">
-                                            @if ($categories->count() >= 2)
-                                                @foreach ($categories->random(2) as $category)
+                                            @if ($categories->count() >= 5)
+                                                @foreach ($categories->random(5) as $category)
                                                 <div class="first-list">
                                                     <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
                                                     <div class="div_img">
                                                         @if ($category->cars->count() >= 1)
-                                                        {{ \Log::debug($category->cars->random(1)) }}
                                                         <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->random(1)->img) }}" @endif alt="Cars" title="Cars" width="60" height="39">
 
                                                         @endif
                                                     </div>
                                                     <div class="clear"></div>
                                                 </div>
+                                                @endforeach
+                                            @else
+                                                @foreach ($categories as $category)
+                                                    <div class="first-list">
+                                                        <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
+                                                        <div class="div_img">
+                                                            @if ($category->cars->count() >= 1)
+                                                            <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->take(1)->img) }}" @endif alt="Cars" title="Cars" width="60" height="39">
+                                                            @endif
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -148,7 +167,7 @@
                                             <h1><span class="title-icon"></span><a href="">Quảng Cáo</a></h1>
                                         </div>
                                         <div class="section group example">
-                                        @if ($cars->count() >= 4)
+                                        <!-- @if ($cars->count() >= 4)
                                             <div class="col_1_of_2 span_1_of_2">
                                                 @foreach ($cars->random(4) as $car)
                                                     <img src="{{ \Storage::url($car->img) }}" alt=""/>
@@ -160,7 +179,9 @@
                                                 @endforeach
                                             </div>
                                             <div class="clear"></div>
-                                        @endif
+                                        @endif -->
+                                        <img src="http://trungtamgoogle.com/wp-content/uploads/2015/09/quangcao.png">
+                                        <img src="http://www.alaskayouthsoccer.org/imagedata/17_Advertise_with_us.png">
                                         </div>
                                         <div class="clear"></div>
                                     </div>
@@ -168,9 +189,84 @@
                                 
                                 <div class="clear"></div>
                                 <div class="footer-bottom">
-                                    <div class="copy">
-                                        <p>All rights Reserved | Design by <a href="#">WebThueXe</a></p>
-                                    </div>
+                                    <div id="zt-footer" class="clearfix pattern0">
+                
+                    <div id="zt-footer-inner" class="row-fluid">
+                        <div class="col-md-6" style="padding:0 10px;">
+                                
+
+
+<div id="k2ModuleBox96" class="k2ItemsBlock">
+
+
+
+
+
+
+       
+
+        
+        <p><strong>CÔNG TY CHO THUÊ XE CHUYÊN NGHIỆP</strong></p>
+<p>Địa chỉ: 999 Trương Định, Hoàng Mai, Hà Nội</p>
+<p>Điện thoại: <a href="tel:99999999">(04)99999999</a> - <a href="tel:043736978">(04)99999999</a></p>
+<p>Hotline: <a href="tel:99999999">(04)3 99999999</a> - <a href="tel:0913534623">99999999</a></p>
+<p>Email: <span id="cloak5820"><a href="https://www.facebook.com/bang.long.300">Băng Long</a></span><script type="text/javascript">
+ //<!--
+ document.getElementById('cloak5820').innerHTML = '';
+ var prefix = '&#109;a' + 'i&#108;' + '&#116;o';
+ var path = 'hr' + 'ef' + '=';
+ document.getElementById('cloak5820').innerHTML += '<a ' + path + '\'' + prefix + ':' + 'banglong@gmail.com' + '\'>' + 'Băng Long' +'<\/a>';
+ //-->
+ </script></p>
+        
+    
+
+
+
+
+
+
+
+</div>
+
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                        
+                           <div class="span4 hidden-phone" style="float:right; text-align:right; padding-right:10px;">
+                                
+
+
+<div id="k2ModuleBox216" class="k2ItemsBlock">
+
+
+
+
+
+
+       
+
+        
+        <p>Liên kết:&nbsp;<select style="width: 170px;" onchange="window.open(this.value, '_blank');"><option value="https://www.facebook.com/bang.long.300">Website Thuê Xe</option><option value="https://www.facebook.com/bang.long.300">Website Thuê Xe</option><option value="https://www.facebook.com/bang.long.300">Website Thuê Xe</option><option value="http://www.facebook.com/">Website Thuê Xe</option><option value="https://www.facebook.com/bang.long.300">Website Thuê Xe</option></select></p><a href="https://www.facebook.com/bang.long.300" target="_blank">Băng </a>
+        
+    
+
+
+
+
+
+
+
+</div>
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=242624119487336" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+            
+            </div>
                                 </div>
                             </div>
                         </div>

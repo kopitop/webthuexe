@@ -1,22 +1,56 @@
 @extends('layouts.app')
 @section('content')
 <div class="header_bottom_right_images">
-    <div id="slideshow">
-        <ul class="slides">
 
-            @foreach ($randomCars as $car)
-            <li>
-                <a href="/xe/{{ $car->slug }}-{{ $car->id }}">
-                    <canvas ></canvas>
-                    <img style="width: 768px" class="img-responsive" src="{{ \Storage::url($car->img) }}" alt="Hình ảnh bị lỗi" >
-                </a>
-            </li>
-            @endforeach
 
-        </ul>
-        <span class="arrow previous"></span>
-        <span class="arrow next"></span>
-    </div>
+            <div class="owl-carousel owl-theme">
+                @foreach ($randomCars as $car)
+                    <div class="item">
+                        <img src="{{ \Storage::url($car->img) }}" alt="Hình ảnh bị lỗi" >
+                    </div>
+                @endforeach
+            </div>
+
+            <style type="text/css">
+                
+                .owl-carousel .owl-item img {
+                    display: block;
+                    height: 500px;
+                    width: 100%;
+                }
+
+                .owl-nav div {
+                    text-decoration: none;
+                    display: inline-block;
+                    padding: 8px 16px;
+                }
+
+                .owl-nav div:hover {
+                    background-color: #ddd;
+                    cursor: pointer;
+                    color: black;
+                }
+
+                .owl-nav div.prev {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                .owl-nav div.next {
+                    background-color: #4CAF50;
+                    color: white;
+                    position: relative;
+                    left: 85%;
+                }
+
+                .owl-nav {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                }
+
+            </style>
+
     <div class="content-wrapper">
         <div class="content-top">
             <div class="box_wrapper">
@@ -81,3 +115,26 @@
     </div>
 </div>
 @endsection
+@push('script')
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        },
+        navClass: ['prev', 'next']
+    })
+    });
+</script>
+@endpush

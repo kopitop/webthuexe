@@ -62,20 +62,14 @@
 
               <div class="form-group">
                 <label>Chọn cha cho danh mục này</label>
-                @if (!$category->parent_id)
                   {!!
-                    nestable($categories->toArray())->attr(['name' => 'parent_id', 'class' => 'form-control'])
+                    nestable($categories->toArray())->attr(['id' => 'selectedCat', 'name' => 'parent_id', 'class' => 'form-control'])
                     ->selected($category->parent_id)
                     ->renderAsDropdown()
                   !!}
-                  <input type="hidden" name="parent_id" value="0">
-                @else
-                  {!!
-                    nestable($categories->toArray())->attr(['name' => 'parent_id', 'class' => 'form-control'])
-                    ->selected($category->parent_id)
-                    ->renderAsDropdown()
-                  !!}
-                @endif
+                <script type="text/javascript">
+                  document.getElementById("selectedCat").selectedIndex = -1;
+                </script>
               </div>
               <br>
             </div>

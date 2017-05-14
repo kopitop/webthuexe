@@ -34,7 +34,7 @@ img{max-width:100%;}
 }
 body{
 	font-family: 'AmbleRegular';
-	background:url(../images/bg-body.jpg)repeat;
+	background:url(http://thuexe.com/templates/zt_newsiv/images/n2.jpg)repeat;
 }
 .wrap{
 	width:80%;
@@ -139,7 +139,6 @@ body{
 	border-left: 2px ridge #F75633;
 }
 .h-bg{
-	padding:5%;
 }
 .header{
 	background:#fff;
@@ -157,7 +156,8 @@ body{
 }
 .header-bot{
 	padding:5% 2% 1.2% 2%;
-	background:url(../images/tail.gif);
+	background:url(http://www.wculife.org/wp-content/uploads/2013/12/WCU-WebsiteBanner2-2-Background2.png);
+	background-size: cover;
 }
 .follow_icon {
 	list-style: none;
@@ -926,7 +926,7 @@ ul.list-2 li span a {
 		width:95%;
 	}	
 	.top-nav li a {
-		width:203px;
+		width:145px;
 	}
 }
 @media (max-width:1024px){

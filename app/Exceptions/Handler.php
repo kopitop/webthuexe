@@ -60,7 +60,7 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        if ($request->segments(1) == 'quan-tri') {
+        if ($request->segments(1) && ($request->segments(1)[0] == 'quan-tri')) {
             return redirect()->guest('/quan-tri/login');
         }
 

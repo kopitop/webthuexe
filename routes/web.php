@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['domain' => 'enigmatic-escarpment-34531.herokuapp.com'], function() {
+Route::group(['domain' => 'chothuexe.dev'], function() {
     Auth::routes();
     Route::get('/', function () {
         return redirect('/home');

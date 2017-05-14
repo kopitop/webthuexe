@@ -141,7 +141,7 @@ class CarController extends Controller
             $car->price = $request->input('price') ? $request->input('price') : $car->price;
             $car->category_id = $request->input('category_id') ? $request->input('category_id') : $car->category_id;
 
-            if ($request->file('photo')->isValid()) {
+            if ($request->file('photo') && $request->file('photo')->isValid()) {
                 $path = $request->file('photo')->store('uploads');
 
                 \Log::debug($path);

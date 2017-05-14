@@ -28,6 +28,9 @@
                     <div class="clear"></div>
                 </div>
                 @endforeach
+                @if($carsByCat->count() == 0)
+                Xin lỗi hiện giờ chưa có xe nào trong danh mục này
+                @endif
                 <div class="clear"></div>
             </div>
         </div>

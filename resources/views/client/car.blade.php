@@ -55,8 +55,10 @@
             <div class="comments-area">
                 <form action="" method="post">
                     <p>
+                        <label>Xin mời {{ \Auth::user()->name }} hãy đặt xe</label>
                         <label>Thời gian cần thuê</label>
-                        <span>*</span>
+                        <p>Xin hãy chọn thời gian quý khách bắt đầu thuê và thời gian trả xe</p>
+                        <p>Xin lưu ý, ít nhất quý khách cần thuê 1 ngày</p>
                         <input onchange="dateRangeChange()" id="reservation" type="text" value="">
                     </p>
                     <p>
@@ -69,7 +71,7 @@
                             {{ csrf_field() }}
                             <input id="begin_date" type="hidden" name="begin">
                             <input id="end_date" type="hidden" name="end">
-                            <input type="submit">
+                            <input type="submit" value="Đặt xe">
                         </form>
                     </p>
                     <!-- /.input group -->

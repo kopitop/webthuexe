@@ -27,6 +27,7 @@
     "jqueryui": "^1.11.1",
     "jvectormap": "^2.0.4",
     "morris.js": "^0.5.0",
+    "owl.carousel": "^2.2.0",
     "raphael": "^2.2.7",
     "sparkline": "^0.1.2"
   }

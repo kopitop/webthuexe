@@ -61,9 +61,12 @@
 
               <div class="form-group">
                 <label>Chọn cha cho danh mục này</label>
-                {!! nestable($categories->toArray())->attr(['name' => 'parent_id', 'class' => 'form-control'])
+                {!! nestable($categories->toArray())->attr(['id' => 'selectedCat', 'name' => 'parent_id', 'class' => 'form-control'])
                     ->renderAsDropdown()
                 !!}
+                <script type="text/javascript">
+                  document.getElementById("selectedCat").selectedIndex = -1;
+                </script>
               </div>
               <br>
             </div>

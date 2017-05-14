@@ -15,6 +15,7 @@ const { mix } = require('laravel-mix');
 mix.js([
     'resources/assets/js/app.js',
     'resources/assets/plugins/daterangepicker/daterangepicker.js',
+    'node_modules/owl.carousel/dist/owl.carousel.min.js',
 ], 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 mix.copyDirectory('resources/assets/img', 'public/images');
@@ -23,6 +24,7 @@ mix.styles([
     'resources/assets/styles/style.css',
     'resources/assets/plugins/daterangepicker/daterangepicker.css',
     'resources/assets/admin/plugins/datatables/dataTables.bootstrap.css',
+    'node_modules/owl.carousel/dist/assets/owl.carousel.min.css',
 ], 'public/css/all.css');
 
 

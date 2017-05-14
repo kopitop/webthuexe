@@ -76,7 +76,7 @@
                 <p class="help-block">Hãy chọn 1 hình đại diện</p>
               </div>
 
-              <textarea class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea name="desc" class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
             </div>
             <!-- /.box-body -->
