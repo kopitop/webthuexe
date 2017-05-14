@@ -16,15 +16,15 @@
                             <form class="form-horizontal" role="form" method="POST" action="/register">
                                 {{ csrf_field() }}
 
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('ten') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-4 control-label">Name</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                        <input id="ten" type="text" class="form-control" name="ten" value="{{ old('ten') }}" required autofocus>
 
-                                        @if ($errors->has('name'))
+                                        @if ($errors->has('ten'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                                <strong>{{ $errors->first('ten') }}</strong>
                                             </span>
                                         @endif
                                     </div>

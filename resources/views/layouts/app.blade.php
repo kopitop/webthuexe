@@ -55,7 +55,7 @@
                                     @else
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        {{ Auth::user()->ten }} <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu" role="menu">
                                             @if (Auth::user()->isAdmin())
@@ -68,7 +68,7 @@
                                                     document.getElementById('logout-form').submit();">
                                                 Logout
                                                 </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
                                                 </form>
                                             </li>
@@ -91,14 +91,14 @@
                                 <div class="search">
                                     <form method="GET" action="/xe">
                                         <select name="sort_by">
-                                            <option value="title">Tên</option>
-                                            <option value="price">Giá</option>
+                                            <option @if($oldInput && ($oldInput['sort_by'] == 'ten_hien_thi')) {{ 'selected' }} @endif value="ten_hien_thi">Tên</option>
+                                            <option @if($oldInput && ($oldInput['sort_by'] == 'gia')) {{ 'selected' }} @endif value="gia">Giá</option>
                                         </select>
                                         <select name="asc">
-                                            <option value="1" selected="">Tăng dần</option>
-                                            <option value="0">Giảm dần</option>
+                                            <option @if($oldInput && $oldInput['asc']) {{ 'selected' }} @endif value="1" selected="">Tăng dần</option>
+                                            <option @if($oldInput && !$oldInput['asc']) {{ 'selected' }} @endif value="0">Giảm dần</option>
                                         </select>
-                                        <input type="text" class="textbox" name="keyword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                                        <input type="text" class="textbox" name="keyword" value="@if($oldInput && $oldInput['keyword']) {{ $oldInput['keyword'] }} @endif" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
                                         <button type="submit" class="gray-button"><span>Tìm kiếm </span></button>
                                     </form>
                                 </div>
@@ -112,8 +112,8 @@
 
                                     @foreach ($categories as $category)
 
-                                    @if ($category->parent_id === 0)
-                                    <li><a href="/danh-muc/{{ $category->slug }}-{{ $category->id }}">{{ $category->title }}</a></li>
+                                    @if ($category->danh_muc_cha_id === 0)
+                                    <li><a href="/danh-muc/{{ $category->ten_url }}-{{ $category->id }}">{{ $category->ten_hien_thi }}</a></li>
 
                                     @endif
                                     @endforeach
@@ -131,10 +131,10 @@
                                             @if ($categories->count() >= 5)
                                                 @foreach ($categories->random(5) as $category)
                                                 <div class="first-list">
-                                                    <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
+                                                    <div class="div_2"><a href="/danh-muc/{{ $category->ten_url }}-{{$category->id}}">{{ $category->ten_hien_thi }}</a></div>
                                                     <div class="div_img">
                                                         @if ($category->cars->count() >= 1)
-                                                        <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->random(1)->img) }}" @endif alt="Cars" title="Cars" width="60" height="39">
+                                                        <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->random(1)->anh) }}" @endif alt="Cars" title="Cars" width="60" height="39">
 
                                                         @endif
                                                     </div>
@@ -144,10 +144,10 @@
                                             @else
                                                 @foreach ($categories as $category)
                                                     <div class="first-list">
-                                                        <div class="div_2"><a href="/danh-muc/{{ $category->slug }}-{{$category->id}}">{{ $category->title }}</a></div>
+                                                        <div class="div_2"><a href="/danh-muc/{{ $category->ten_url }}-{{$category->id}}">{{ $category->ten_hien_thi }}</a></div>
                                                         <div class="div_img">
                                                             @if ($category->cars->count() >= 1)
-                                                            <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->take(1)->img) }}" @endif alt="Cars" title="Cars" width="60" height="39">
+                                                            <img src="@if (property_exists($category->cars->take(1), 'img')) {{ \Storage::url($category->cars->take(1)->anh) }}" @endif alt="Cars" title="Cars" width="60" height="39">
                                                             @endif
                                                         </div>
                                                         <div class="clear"></div>
@@ -170,12 +170,12 @@
                                         <!-- @if ($cars->count() >= 4)
                                             <div class="col_1_of_2 span_1_of_2">
                                                 @foreach ($cars->random(4) as $car)
-                                                    <img src="{{ \Storage::url($car->img) }}" alt=""/>
+                                                    <img src="{{ \Storage::url($car->anh) }}" alt=""/>
                                                 @endforeach
                                             </div>
                                             <div class="col_1_of_2 span_1_of_2">
                                                 @foreach ($cars->random(4) as $car)
-                                                    <img src="{{ \Storage::url($car->img) }}" alt=""/>
+                                                    <img src="{{ \Storage::url($car->anh) }}" alt=""/>
                                                 @endforeach
                                             </div>
                                             <div class="clear"></div>

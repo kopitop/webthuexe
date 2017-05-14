@@ -21,10 +21,12 @@ class Controller extends BaseController
             $query->limit(1);
         }])->get();
 
-        $this->viewData['cars'] = Car::with('category')->where('status', '!=', config('vars.cars.status.suspend'))->get();
+        $this->viewData['cars'] = Car::with('category')->where('trang_thai', '!=', config('vars.cars.status.suspend'))->get();
 
         if (request()->route()) {
             $this->viewData['url'] = request()->route()->uri;
         }
+
+        $this->viewData['oldInput'] = request()->input();
     }
 }

@@ -83,11 +83,11 @@ class AccountController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        if ($order->status != config('vars.order.status.pending')) {
+        if ($order->trang_thai != config('vars.order.status.pending')) {
             return back()->withErrors('Không thể xoá đơn hàng này');
         }
 
-        $order->status = config('vars.order.status.rejected');
+        $order->trang_thai = config('vars.order.status.rejected');
         if($order->save()) {
             return back()->withSuccess('Bạn đã huỷ đơn hàng này');
         }

@@ -61,15 +61,16 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
-                    <td><a href="/quan-tri/users/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
-                    <td><a href="/quan-tri/cars/{{ $order->car->id }}/edit">{{ $order->car->title }}</a></td>
-                    <td>Từ {{ $order->begin }} đến {{ $order->end }}</td>
-                    <td>{{ $order->total }}</td>
-                    <td>{{ $order->car->status == 0 ? 'Ngừng cho thuê' : 'Sẵn sàng cho thuê' }}</td>
-                    <td>{{ $order->status == 0 ? 'Đang xử lý' : ($order->status == 1 ? 'Xác nhận' : 'Huỷ') }}</td>
+                    <td><a href="/quan-tri/users/{{ $order->user->id }}">{{ $order->user->ten }}</a></td>
+                    <td><a href="/quan-tri/cars/{{ $order->car->id }}/edit">{{ $order->car->ten_hien_thi }}</a></td>
+                    <td>Từ {{ $order->bat_dau }} đến {{ $order->ket_thuc }}</td>
+                    <td>{{ $order->tong_cong }}</td>
+                    <td>{{ $order->car->trang_thai == 0 ? 'Ngừng cho thuê' : 'Sẵn sàng cho thuê' }}</td>
+                    <td>{{ $order->trang_thai == 0 ? 'Đang xử lý' : ($order->trang_thai == 1 ? 'Xác nhận' : 'Huỷ') }}</td>
                     <td style="display: flex">
                       <a class="btn btn-block btn-success" style="
                         margin-top: 0;
@@ -98,6 +99,7 @@
                     </td>
                   </tr>
                 @endforeach
+
                 </tbody>
                 <tfoot>
                 <tr>

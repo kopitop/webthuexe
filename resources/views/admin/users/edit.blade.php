@@ -38,13 +38,13 @@
           <div class="box-header with-border">
             <h3 class="box-title">User Profile</h3>
           </div>
-          <form method="POST" action="/users/{{ $user->id }}">
+          <form method="POST" action="/quan-tri/users/{{ $user->id }}">
             <div class="box-body">
               {{ method_field('PUT') }}
               {{ csrf_field() }}
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="name" type="text" class="form-control" placeholder="Họ và tên" value="{{ $user->name }}">
+                <input name="ten" type="text" class="form-control" placeholder="Họ và tên" value="{{ $user->ten }}">
               </div>
               <br>
 
@@ -56,7 +56,7 @@
 
               <div class="form-group">
                 <label>Chọn level cho thành viên này</label>
-                <select name="role" class="form-control">
+                <select name="quyen_han" class="form-control">
                   <option value="0" @if (!$user->isAdmin()) {{ 'selected' }} @endif>Member</option>
                   <option value="1" @if ($user->isAdmin()) {{ 'selected' }} @endif>Admin</option>
                 </select>

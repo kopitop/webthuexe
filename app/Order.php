@@ -10,11 +10,18 @@ class Order extends Model
     use SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'hoa_don';
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'begin', 'end'];
+    protected $dates = ['deleted_at', 'bat_dau', 'ket_thuc'];
 
     /**
      * The attributes that are mass assignable.
@@ -22,12 +29,12 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'car_id', 'user_id', 'begin', 'end', 'total', 'status'
+        'xe_id', 'user_id', 'bat_dau', 'ket_thuc', 'tong_cong', 'trang_thai'
     ];
 
     public function car()
     {
-        return $this->belongsTo(Car::class, 'car_id');
+        return $this->belongsTo(Car::class, 'xe_id');
     }
 
     public function user()
@@ -37,22 +44,22 @@ class Order extends Model
 
     public function scopePendingOrders($query)
     {
-        return $query->where('status', config('vars.order.status.pending'));
+        return $query->where('trang_thai', config('vars.order.status.pending'));
     }
 
     public function scopeApprovedOrders($query)
     {
-        return $query->where('status', config('vars.order.status.approved'));
+        return $query->where('trang_thai', config('vars.order.status.approved'));
     }
 
     public function scopeRejectedOrders($query)
     {
-        return $query->where('status', config('vars.order.status.rejected'));
+        return $query->where('trang_thai', config('vars.order.status.rejected'));
     }
 
     public function scopeToday($query)
     {
-        return $query->where('begin', \Carbon\Carbon::today())
-            ->where('end', \Carbon\Carbon::today());
+        return $query->where('bat_dau', \Carbon\Carbon::today())
+            ->orWhere('ket_thuc', \Carbon\Carbon::today());
     }
 }

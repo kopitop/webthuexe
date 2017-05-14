@@ -10,12 +10,19 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'ten', 'email', 'password', 'quyen_han'
     ];
 
     /**
@@ -29,7 +36,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role;
+        return $this->quyen_han;
     }
 
     public function isCurrent()

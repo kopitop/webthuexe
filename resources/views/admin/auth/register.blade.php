@@ -34,14 +34,14 @@
   <div class="login-box-body">
     <p class="login-box-msg">Xin vui lòng đăng ký</p>
 
-    <form role="form" method="POST" action="">
+    <form role="form" method="POST" action="/quan-tri/register">
       {{ csrf_field() }}
-      <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Tên">
+      <div class="form-group{{ $errors->has('ten') ? ' has-error' : '' }}">
+        <input id="name" type="text" class="form-control" name="ten" value="{{ old('ten') }}" required autofocus placeholder="Tên">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        @if ($errors->has('name'))
+        @if ($errors->has('ten'))
           <span class="help-block">
-            <strong>{{ $errors->first('name') }}</strong>
+            <strong>{{ $errors->first('ten') }}</strong>
           </span>
         @endif
       </div>

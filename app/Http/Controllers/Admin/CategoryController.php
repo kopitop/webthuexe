@@ -42,15 +42,15 @@ class CategoryController extends Controller
     {
         try {
             $this->validate($request, [
-                'name' => 'required|max:255|alpha_dash',
-                'title' => 'required',
-                'parent_id' => 'exists:categories,id',
+                'ten' => 'required|max:255|alpha_dash',
+                'ten_hien_thi' => 'required',
+                'danh_muc_cha_id' => 'exists:danh_muc,id',
             ]);
 
             $input = $request->input();
-            $input['slug'] = str_slug($request->input('title'));
-            if (!array_key_exists('parent_id', $input)) {
-                $input['parent_id'] = 0;
+            $input['ten_url'] = str_slug($request->input('ten_hien_thi'));
+            if (!array_key_exists('danh_muc_cha_id', $input)) {
+                $input['danh_muc_cha_id'] = 0;
             }
 
             if (Category::create($input)) {
@@ -97,19 +97,19 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::findOrFail($id);
-            if ($category->children()->count() && ($request->input('parent_id') !== $category->parent_id)) {
+            if ($category->children()->count() && ($request->input('danh_muc_cha_id') !== $category->danh_muc_cha_id)) {
                 return back()->withErrors('Chỉ có thể thay đổi cha của 1 thư mục rỗng');
             }
 
-            if (($request->input('parent_id') == $id)) {
+            if (($request->input('danh_muc_cha_id') == $id)) {
                 return back()->withErrors('Không thể là cha của chính mình');
             }
 
-            $category->title = $request->input('title');
-            $category->name = $request->input('name');
-            $category->parent_id = $request->input('parent_id');
-            $category->desc = $request->input('desc');
-            $category->slug = str_slug($request->input('title'));
+            $category->ten_hien_thi = $request->input('ten_hien_thi');
+            $category->ten = $request->input('ten');
+            $category->danh_muc_cha_id = $request->input('danh_muc_cha_id') ? $request->input('danh_muc_cha_id') : $category->danh_muc_cha_id;
+            $category->gioi_thieu = $request->input('gioi_thieu');
+            $category->ten_url = str_slug($request->input('ten_hien_thi'));
 
             if ($category->save()) {
                 return back()->withSuccess('Bạn đã chỉnh sửa danh muc có ID là ' . $id . 'thành công');

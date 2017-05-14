@@ -43,27 +43,27 @@
               {{ csrf_field() }}
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="name" type="text" class="form-control" placeholder="Tên xe" value="{{ old('name') }}">
+                <input name="ten" type="text" class="form-control" placeholder="Tên xe" value="{{ old('ten') }}">
               </div>
               <br>
 
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="title" type="text" class="form-control" placeholder="Tên hiển thị xe" value="{{ old('title') }}">
+                <input name="ten_hien_thi" type="text" class="form-control" placeholder="Tên hiển thị xe" value="{{ old('ten_hien_thi') }}">
               </div>
               <br>
 
               <div class="input-group">
                 <input type="text" class="form-control price" placeholder="Giá cho thuê theo ngày">
-                <input type="hidden" class="price-value" name="price" value="{{ old('price') }}">
+                <input type="hidden" class="price-value" name="gia" value="{{ old('gias') }}">
                 <span class="input-group-addon">.00</span>
               </div>
               <br>
 
               <div class="form-group">
                 <label>Chọn danh mục cho xe này</label>
-                {!! nestable($categories->toArray())->attr(['name' => 'category_id', 'class' => 'form-control'])
-                  ->selected(old('category_id'))
+                {!! nestable($categories->toArray())->attr(['name' => 'danh_muc_id', 'class' => 'form-control'])
+                  ->selected(old('danh_muc_id'))
                     ->renderAsDropdown()
                 !!}
               </div>
@@ -76,7 +76,7 @@
                 <p class="help-block">Hãy chọn 1 hình đại diện</p>
               </div>
 
-              <textarea name="desc" class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea name="gioi_thieu" class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
             </div>
             <!-- /.box-body -->

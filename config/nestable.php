@@ -1,22 +1,22 @@
 <?php
 
 return [
-    'parent'=> 'parent_id',
+    'parent'=> 'danh_muc_cha_id',
     'primary_key' => 'id',
     'generate_url'   => true,
     'childNode' => 'child',
     'body' => [
         'id',
-        'name',
-        'slug',
+        'ten',
+        'ten_url',
     ],
     'html' => [
-        'label' => 'title',
+        'label' => 'ten_hien_thi',
         'href'  => 'id'
     ],
     'dropdown' => [
         'prefix' => '',
-        'label' => 'title',
+        'label' => 'ten_hien_thi',
         'value' => 'id'
     ]
 ];

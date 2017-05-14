@@ -17,14 +17,13 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-
         $validator = \Validator::make($request->all(), [
-            'sort_by' => 'in:name,title,price',
+            'sort_by' => 'in:ten,ten_hien_thi,gia',
             'asc' => 'in:0,1',
         ]);
 
         if ($validator->fails()) {
-            return redirect(config('app.url'));
+            return redirect('/')->withErrors($validator);
         }
 
         $query = Car::select('*');
@@ -34,13 +33,24 @@ class CarController extends Controller
         \Log::debug($keyword);
         if ($keyword) {
             $columns = [
-                'title', 'name', 'desc'
+                'ten_hien_thi', 'ten', 'gioi_thieu'
             ];
             foreach($columns as $column)
             {
               $query->orWhere($column, 'like', '%' . (string)$keyword . '%');
             }
         }
+
+        if ($keyword) {
+            $columns = [
+                'ten_hien_thi', 'ten', 'gioi_thieu'
+            ];
+            foreach($columns as $column)
+            {
+              $query->orWhere($column, 'like', '%' . (string)$keyword . '%');
+            }
+        }
+
         \Log::debug('ok');
 
         $sortBy = $request->input('sort_by');
@@ -92,7 +102,7 @@ class CarController extends Controller
         $id = $matches ? $matches[0] : null;
         
         $this->viewData['car'] = $car->findOrFail($id);
-        $this->viewData['relatedCars'] = $category->findOrFail($this->viewData['car']->category_id)->cars;
+        $this->viewData['relatedCars'] = $category->findOrFail($this->viewData['car']->danh_muc_id)->cars;
 
         return view('client.car', $this->viewData);
     }
@@ -141,8 +151,8 @@ class CarController extends Controller
     {
         try {
             $this->validate($request, [
-                'begin' => 'required|date|after:yesterday',
-                'end' => 'required|date|after:begin',
+                'bat_dau' => 'required|date|after:yesterday',
+                'ket_thuc' => 'required|date|after:bat_dau',
             ]);
 
             preg_match(config('vars.regex.idFromSlug'), $slug, $matches);
@@ -150,15 +160,15 @@ class CarController extends Controller
             
             $car = Car::findOrFail($id);
 
-            $begin = Carbon::parse($request->input('begin'));
-            $end = Carbon::parse($request->input('end'));
+            $begin = Carbon::parse($request->input('bat_dau'));
+            $end = Carbon::parse($request->input('ket_thuc'));
 
             Order::create([
-                'car_id' => $id,
+                'xe_id' => $id,
                 'user_id' => \Auth::user()->id,
-                'begin' => $begin,
-                'end' => $end,
-                'total' => $end->diffInDays($begin) * $car->price,
+                'bat_dau' => $begin,
+                'ket_thuc' => $end,
+                'tong_cong' => $end->diffInDays($begin) * $car->gia,
             ]);
 
             return back()->withSuccess('Đặt xe thành công, chúng tôi sẽ liên hệ lại để xác nhận ngay!');

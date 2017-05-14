@@ -43,25 +43,25 @@
               {{ csrf_field() }}
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="name" type="text" class="form-control" placeholder="Tên danh mục" value="{{ old('name') }}">
+                <input name="ten" type="text" class="form-control" placeholder="Tên danh mục" value="{{ old('ten') }}">
               </div>
               <br>
 
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="title" type="text" class="form-control" placeholder="Tên hiển thị" value="{{ old('title') }}">
+                <input name="ten_hien_thi" type="text" class="form-control" placeholder="Tên hiển thị" value="{{ old('ten_hien_thi') }}">
               </div>
               <br>
 
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="desc" type="text" class="form-control" placeholder="Mô tả" value="{{ old('desc') }}">
+                <input name="gioi_thieu" type="text" class="form-control" placeholder="Mô tả" value="{{ old('gioi_thieu') }}">
               </div>
               <br>
 
               <div class="form-group">
                 <label>Chọn cha cho danh mục này</label>
-                {!! nestable($categories->toArray())->attr(['id' => 'selectedCat', 'name' => 'parent_id', 'class' => 'form-control'])
+                {!! nestable($categories->toArray())->attr(['id' => 'selectedCat', 'name' => 'danh_muc_cha_id', 'class' => 'form-control'])
                     ->renderAsDropdown()
                 !!}
                 <script type="text/javascript">

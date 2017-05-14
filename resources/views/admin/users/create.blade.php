@@ -43,7 +43,7 @@
               {{ csrf_field() }}
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="name" type="text" class="form-control" placeholder="Họ và tên" value="{{ old('name') }}">
+                <input name="ten" type="text" class="form-control" placeholder="Họ và tên" value="{{ old('ten') }}">
               </div>
               <br>
 

@@ -56,9 +56,9 @@
                 @foreach ($categories as $category)
                   <tr>
                     <td>{{ $category->id }}</td>
-                    <td><a href="/quan-tri/categories/{{ $category->id }}/edit">{{ $category->name }}</a></td>
-                    <td>{{ $category->title }}</td>
-                    <td><a href="/quan-tri/categories/{{ $category->parent['id'] }}/edit">{{ $category->parent['title'] }}</a></td>
+                    <td><a href="/quan-tri/categories/{{ $category->id }}/edit">{{ $category->ten }}</a></td>
+                    <td>{{ $category->ten_hien_thi }}</td>
+                    <td><a href="/quan-tri/categories/{{ $category->parent['id'] }}/edit">{{ $category->parent['ten_hien_thi'] }}</a></td>
                     <td style="display: flex">
                       <a href="/quan-tri/categories/{{ $category->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="

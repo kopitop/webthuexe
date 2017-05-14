@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $this->viewData['nestedCategories'] = Category::route(['danh-muc' => 'slug']);
+        $this->viewData['nestedCategories'] = Category::route(['danh-muc' => 'ten_url']);
 
         return view('client.categories', $this->viewData);
     }

@@ -2,15 +2,15 @@
 @section('content')
 <div class="header_bottom_right_images">
     <div class="about_wrapper">
-        <h1>Thông tin chi tiết xe {{ $car->title }}</h1>
+        <h1>Thông tin chi tiết xe {{ $car->ten_hien_thi }}</h1>
     </div>
     <div class="about-group">
         <div class="about-top">
             <div class="grid images_3_of_1">
-                <img src="{{ \Storage::url($car->img) }}" alt="">
+                <img src="{{ \Storage::url($car->anh) }}" alt="">
             </div>
             <div class="grid span_2_of_3">
-                {!! $car->desc !!}
+                {!! $car->gioi_thieu !!}
             </div>
             <div class="clear"></div>
         </div>
@@ -18,7 +18,7 @@
         <div class="links">
             <ul>
                 <li><a href="#"><img src="/images/blog-icon1.png" title="date"><span>{{ $car->created_at }}</span></a></li>
-                <li><a href="#"><img src="/images/blog-icon2.png" title="Admin"><span>{{ $car->category->title }}</span></a></li>
+                <li><a href="#"><img src="/images/blog-icon2.png" title="Admin"><span>{{ $car->category->ten_hien_thi }}</span></a></li>
             </ul>
         </div>
         <div class="team">
@@ -26,8 +26,8 @@
             <div class="section group">
                 @foreach ($relatedCars->take(3) as $c)
                 <div class="grid_1_of_3 images_1_of_3 relatedCar">
-                    <img src="{{ \Storage::url($c->img) }}" alt="">
-                    <h4><a href="/xe/{{ $c->slug }}-{{ $c->id }}">{{ $c->title }}</a></h4>
+                    <img src="{{ \Storage::url($c->anh) }}" alt="">
+                    <h4><a href="/xe/{{ $c->ten_url }}-{{ $c->id }}">{{ $c->ten_hien_thi }}</a></h4>
                 </div>
                 @endforeach
                 <div class="clear"></div>
@@ -55,7 +55,7 @@
             <div class="comments-area">
                 <form action="" method="post">
                     <p>
-                        <label>Xin mời {{ \Auth::user()->name }} hãy đặt xe</label>
+                        <label>Xin mời {{ \Auth::user()->ten }} hãy đặt xe</label>
                         <label>Thời gian cần thuê</label>
                         <p>Xin hãy chọn thời gian quý khách bắt đầu thuê và thời gian trả xe</p>
                         <p>Xin lưu ý, ít nhất quý khách cần thuê 1 ngày</p>
@@ -69,8 +69,8 @@
                     <p>
                         <form method="post">
                             {{ csrf_field() }}
-                            <input id="begin_date" type="hidden" name="begin">
-                            <input id="end_date" type="hidden" name="end">
+                            <input id="begin_date" type="hidden" name="bat_dau">
+                            <input id="end_date" type="hidden" name="ket_thuc">
                             <input type="submit" value="Đặt xe">
                         </form>
                     </p>
@@ -79,7 +79,7 @@
                 </form>
             </div>
             @else
-            <div class="leave-comment"><a href="/login" name="comment">Xin hãy đăng nhập để đặt xe</a></div>
+            <div class="leave-comment"><a href="/login">Xin hãy đăng nhập để đặt xe</a></div>
             @endif
         </div>
     </div>
@@ -88,7 +88,7 @@
 
 @push('script')
 <script type="text/javascript">
-    var price = "{{ $car->price }}";
+    var price = "{{ $car->gia }}";
 
     (function () {
         $('#reservation').daterangepicker();

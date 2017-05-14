@@ -13,16 +13,16 @@ class CreateCarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('xe', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('title');
-            $table->string('slug');
-            $table->string('img')->default('default.png');
-            $table->text('desc')->nullable();
-            $table->integer('price');
-            $table->tinyInteger('status')->default(config('car.status.available'));
-            $table->integer('category_id');
+            $table->string('ten');
+            $table->string('ten_hien_thi');
+            $table->string('ten_url');
+            $table->string('anh')->default('default.png');
+            $table->text('gioi_thieu')->nullable();
+            $table->integer('gia');
+            $table->tinyInteger('trang_thai')->default(config('car.status.available'));
+            $table->integer('danh_muc_id');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateCarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('xe');
     }
 }

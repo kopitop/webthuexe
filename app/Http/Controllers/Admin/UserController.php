@@ -40,9 +40,9 @@ class UserController extends Controller
     {
         try {
             $this->validate($request, [
-                'name' => 'required|max:255',
+                'ten' => 'required|max:255',
                 'email' => 'required|unique:users',
-                'role' => 'required|in:0,1',
+                'quyen_han' => 'required|in:0,1',
                 'password' => 'required|confirmed',
             ]);
 
@@ -96,9 +96,9 @@ class UserController extends Controller
                 return back()->withErrors('Bạn không thể chỉnh sửa chính mình được!!!');
             }
 
-            $user->name = $request->input('name');
+            $user->ten = $request->input('ten');
             $user->email = $request->input('email');
-            $user->role = $request->input('role');
+            $user->quyen_han = $request->input('quyen_han');
 
             if ($user->save()) {
                 return back()->withSuccess('Bạn đã chỉnh sửa thành viên có ID là ' . $id . 'thành công');

@@ -56,9 +56,9 @@
                 @foreach ($users as $user)
                   <tr>
                     <td>{{ $user->id }}</td>
-                    <td><a href="/quan-tri/users/{{ $user->id }}">{{ $user->name }}</a></td>
+                    <td><a href="/quan-tri/users/{{ $user->id }}">{{ $user->ten }}</a></td>
                     <td>{{ $user->email }}</td>
-                    <td>@if ($user->role) {{ 'Admin' }} @else {{ 'Member' }} @endif</td>
+                    <td>@if ($user->quyen_han) {{ 'Admin' }} @else {{ 'Member' }} @endif</td>
                     <td style="display: flex">
                       <a href="/quan-tri/users/{{ $user->id }}/edit" class="btn btn-block btn-primary">Sửa</a>
                       <a class="btn btn-block btn-danger" style="

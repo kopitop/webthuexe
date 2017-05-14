@@ -13,14 +13,14 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('hoa_don', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('car_id');
+            $table->integer('xe_id');
             $table->integer('user_id');
-            $table->integer('total');
-            $table->date('begin');
-            $table->date('end');
-            $table->tinyInteger('status')->default(0);
+            $table->integer('tong_cong');
+            $table->date('bat_dau');
+            $table->date('ket_thuc');
+            $table->tinyInteger('trang_thai')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +33,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('hoa_don');
     }
 }

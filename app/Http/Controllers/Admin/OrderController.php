@@ -18,8 +18,8 @@ class OrderController extends Controller
     {
         if ($request->input('today')) {
             $this->viewData['orders'] = Order::with(['user', 'car'])
-            ->orWhereDate('begin', '=',\DB::raw('CURDATE()'))
-            ->orWhereDate('end', '=',\DB::raw('CURDATE()'))->get();
+            ->orWhereDate('bat_dau', '=', \DB::raw('CURDATE()'))
+            ->orWhereDate('ket_thuc', '=', \DB::raw('CURDATE()'))->get();
         } else {
             $this->viewData['orders'] = Order::with(['user', 'car'])->get();
         }
@@ -80,21 +80,21 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $order = Order::findOrFail($id);
-        if ($order->status != config('vars.order.status.pending')) {
+        if ($order->trang_thai != config('vars.order.status.pending')) {
             return back()->withErrors('Không thể xác nhậh đơn hàng này');
         }
 
         $car = $order->car;
 
-        if ($car->status == config('vars.car.status.suspend')) {
+        if ($car->trang_thai == config('vars.car.status.suspend')) {
             return back()->withErrors('Bạn không thể xác nhận đơn hàng này do xe ngừng hoạt động');
         }
 
         $approvedOrdersOfCar = $car->approvedOrders()->get();
         $flag = false;
         $approvedOrdersOfCar->each(function($approvedOrder) use ($order, &$flag) {
-            $startMax = $approvedOrder->begin->max($order->begin);
-            $endMin = $approvedOrder->end->min($order->end);
+            $startMax = $approvedOrder->bat_dau->max($order->bat_dau);
+            $endMin = $approvedOrder->ket_thuc->min($order->ket_thuc);
 
             if ($startMax < $endMin) {
                 $flag = true;
@@ -106,7 +106,7 @@ class OrderController extends Controller
             return redirect()->back()->withErrors('Bạn không thể xác nhận đơn hàng này do xe đã được sử dụng vào thời gian này');
         }
 
-        $order->status = config('vars.order.status.approved');
+        $order->trang_thai = config('vars.order.status.approved');
         if($order->save()) {
             return back()->withSuccess('Bạn đã xác nhận đơn hàng này');
         }
@@ -121,11 +121,11 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        if ($order->status != config('vars.order.status.pending')) {
+        if ($order->trang_thai != config('vars.order.status.pending')) {
             return back()->withErrors('Không thể xoá đơn hàng này');
         }
 
-        $order->status = config('vars.order.status.rejected');
+        $order->trang_thai = config('vars.order.status.rejected');
         if($order->save()) {
             return back()->withSuccess('Bạn đã huỷ đơn hàng này');
         }

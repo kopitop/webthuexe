@@ -44,27 +44,27 @@
               {{ csrf_field() }}
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="name" type="text" class="form-control" placeholder="Tên xe" value="{{ $car->name }}">
+                <input name="ten" type="text" class="form-control" placeholder="Tên xe" value="{{ $car->ten }}">
               </div>
               <br>
 
               <div class="input-group">
                 <span class="input-group-addon">@</span>
-                <input name="title" type="text" class="form-control" placeholder="Tên hiển thị xe" value="{{ $car->title }}">
+                <input name="ten_hien_thi" type="text" class="form-control" placeholder="Tên hiển thị xe" value="{{ $car->ten_hien_thi }}">
               </div>
               <br>
 
               <div class="input-group">
                 <input type="text" class="form-control price" placeholder="Giá cho thuê theo ngày">
-                <input type="hidden" class="price-value" name="price" value="{{ $car->price }}">
+                <input type="hidden" class="price-value" name="gia" value="{{ $car->gia }}">
                 <span class="input-group-addon">.00</span>
               </div>
               <br>
 
               <div class="form-group">
                 <label>Chọn danh mục cho xe này</label>
-                {!! nestable($categories->toArray())->attr(['name' => 'category_id', 'class' => 'form-control'])
-                  ->selected($car->category_id)
+                {!! nestable($categories->toArray())->attr(['name' => 'danh_muc_id', 'class' => 'form-control'])
+                  ->selected($car->danh_muc_id)
                   ->renderAsDropdown()
                 !!}
               </div>
@@ -77,11 +77,11 @@
                 <p class="help-block">Hãy chọn 1 hình đại diện</p>
               </div>
 
-              <textarea class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="desc">{{ old('desc') }}</textarea>
+              <textarea class="textarea" placeholder="Giới thiệu chiếc xe này" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="gioi_thieu">{{ old('gioi_thieu') }}</textarea>
 
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="status" {{ ($car->status) ? 'checked' : null }}> Trạng thái hoạt động
+                  <input type="checkbox" name="trang_thai" {{ ($car->trang_thai) ? 'checked' : null }}> Trạng thái hoạt động
                 </label>
               </div>
 

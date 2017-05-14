@@ -19,7 +19,7 @@ class CarController extends Controller
         if ($request->input('withSuspend')) {
             $this->viewData['cars'] = Car::with('category')->get();
         } else {
-            $this->viewData['cars'] = Car::where('status', '!=', config('vars.car.status.suspend'))->get();
+            $this->viewData['cars'] = Car::where('trang_thai', '!=', config('vars.car.status.suspend'))->get();
         }
 
         return view('admin/cars/index', $this->viewData);
@@ -47,27 +47,27 @@ class CarController extends Controller
     {
         try {
             $validator = \Validator::make($request->all(), [
-                'name' => 'required|max:255|alpha_dash',
-                'title' => 'required|max:255',
-                'price' => 'required|numeric|min:1',
-                'category_id' => 'required|exists:categories,id',
+                'ten' => 'required|max:255|alpha_dash',
+                'ten_hien_thi' => 'required|max:255',
+                'gia' => 'required|numeric|min:1',
+                'danh_muc_id' => 'required|exists:danh_muc,id',
             ]);
 
             if ($validator->fails()) {
-                return redirect('/quan-tri/cars');
+                return redirect('/quan-tri/cars')->withErrors($validator)->withInput();
             }
 
             $input = $request->input();
-            $input['slug'] = str_slug($request->input('title'));
-            $input['desc'] = $request->input('desc');
+            $input['ten_url'] = str_slug($request->input('ten_hien_thi'));
+            $input['gioi_thieu'] = $request->input('gioi_thieu');
             if ($request->file('photo')->isValid()) {
                 $path = $request->file('photo')->store('uploads');
 
                 \Log::debug($path);
 
-                $input['img'] = $path;
+                $input['anh'] = $path;
             }
-            $input['status'] = config('vars.car.status.available');
+            $input['trang_thai'] = config('vars.car.status.available');
 
             if (Car::create($input)) {
                 return redirect('/quan-tri/cars')->withSuccess('Bạn đã thành công');
@@ -113,10 +113,10 @@ class CarController extends Controller
     {
         try {
             $validator = \Validator::make($request->all(), [
-                'name' => 'max:255|alpha_dash',
-                'title' => 'max:255',
-                'price' => 'numeric|min:1',
-                'category_id' => 'exists:categories,id',
+                'ten' => 'max:255|alpha_dash',
+                'ten_hien_thi' => 'max:255',
+                'gia' => 'numeric|min:1',
+                'danh_muc_id' => 'exists:categories,id',
             ]);
 
             if ($validator->fails()) {
@@ -127,26 +127,26 @@ class CarController extends Controller
 
             $car = Car::findOrFail($id);
 
-            if ($car->status == config('vars.car.status.rented')) {
+            if ($car->trang_thai == config('vars.car.status.rented')) {
                 return redirect('/quan-tri/cars')->withErrors('Xe này đang được cho thuê');
             }
 
             \Log::debug('rented ok');
 
-            $car->name = $request->input('name') ? $request->input('name') : $car->name;
-            $car->title = $request->input('title') ? $request->input('title') : $car->title;
-            $car->slug = $request->input('title') ? str_slug($request->input('title')) : $car->slug;
-            $car->desc = $request->input('desc') ? $request->input('desc') : $car->desc;
-            $car->status = $request->input('status') ? ($request->input('status') === 'on' ? config('vars.car.status.available') : config('vars.car.status.suspend')) : $car->status;
-            $car->price = $request->input('price') ? $request->input('price') : $car->price;
-            $car->category_id = $request->input('category_id') ? $request->input('category_id') : $car->category_id;
+            $car->ten = $request->input('ten') ? $request->input('ten') : $car->ten;
+            $car->ten_hien_thi = $request->input('ten_hien_thi') ? $request->input('ten_hien_thi') : $car->ten_hien_thi;
+            $car->ten_url = $request->input('ten_hien_thi') ? str_slug($request->input('ten_hien_thi')) : $car->ten_url;
+            $car->gioi_thieu = $request->input('gioi_thieu') ? $request->input('gioi_thieu') : $car->gioi_thieu;
+            $car->trang_thai = $request->input('trang_thai') ? ($request->input('trang_thai') === 'on' ? config('vars.car.status.available') : config('vars.car.status.suspend')) : $car->trang_thai;
+            $car->gia = $request->input('gia') ? $request->input('gia') : $car->gia;
+            $car->danh_muc_id = $request->input('danh_muc_id') ? $request->input('danh_muc_id') : $car->danh_muc_id;
 
             if ($request->file('photo') && $request->file('photo')->isValid()) {
                 $path = $request->file('photo')->store('uploads');
 
                 \Log::debug($path);
 
-                $car->img = $path;
+                $car->anh = $path;
             }
 
             if ($car->save()) {
@@ -170,11 +170,11 @@ class CarController extends Controller
     {
         try {
             $car = Car::findOrFail($id);
-            if ($car->status === config('vars.car.status.rented')) {
+            if ($car->trang_thai === config('vars.car.status.rented')) {
                 return back()->withErrors('Xe này đang được cho thuê');
             }
 
-            $car->status = config('vars.car.status.suspend');
+            $car->trang_thai = config('vars.car.status.suspend');
 
             if ($car->save()) {
                 return redirect('/quan-tri/cars')->withSuccess('Bạn đã ngừng sử dụng xe có ID là ' . $id . 'thành công');

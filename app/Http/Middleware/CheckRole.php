@@ -17,7 +17,7 @@ class CheckRole
     {
         if (! $request->user()->isAdmin()) {
             // Redirect...
-            return redirect(config('app.url') . '/quan-tri');
+            return redirect('/home')->withErrors('Bạn không phải là Admin');
         }
         return $next($request);
     }

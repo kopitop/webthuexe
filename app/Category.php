@@ -9,28 +9,35 @@ class Category extends Model
 {
     use NestableTrait;
 
-    protected $parent = 'parent_id';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'danh_muc';
+
+    protected $parent = 'danh_muc_cha_id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'desc', 'parent_id', 'slug'
+        'ten', 'ten_hien_thi', 'gioi_thieu', 'danh_muc_cha_id', 'ten_url'
     ];
 
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_id', 'id');
+        return $this->belongsTo(Category::class, 'danh_muc_cha_id', 'id');
     }
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'danh_muc_cha_id', 'id');
     }
 
     public function cars()
     {
-        return $this->hasMany(Car::class, 'category_id', 'id');
+        return $this->hasMany(Car::class, 'danh_muc_id', 'id');
     }
 }

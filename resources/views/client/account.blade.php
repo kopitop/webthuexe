@@ -6,6 +6,7 @@
             <div class="box_wrapper">
                 <h1>Danh sách xe đã thuê</h1>
             </div>
+            @if (\Auth::check())
             <div class="text">
               @if ( session()->has('success') )
                 <div class="alert alert-success alert-dismissible">
@@ -40,10 +41,10 @@
                 @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
-                    <td><a href="/xe/{{ $order->car->slug }}-{{ $order->car->id }}">{{ $order->car->name }}</a></td>
-                    <td>Từ {{ $order->begin }} đến {{ $order->end }}</td>
-                    <td>{{ number_format($order->total, 0, ", ", ".") }} đ</td>
-                    <td>{{ $order->status == 0 ? 'Đang xử lý' : ($order->status == 1 ? 'Xác nhận' : 'Huỷ') }}</td>
+                    <td><a href="/xe/{{ $order->car->ten_url }}-{{ $order->car->id }}">{{ $order->car->ten }}</a></td>
+                    <td>Từ {{ $order->bat_dau }} đến {{ $order->ket_thuc }}</td>
+                    <td>{{ number_format($order->tong_cong, 0, ", ", ".") }} đ</td>
+                    <td>{{ $order->trang_thai == 0 ? 'Đang xử lý' : ($order->trang_thai == 1 ? 'Xác nhận' : 'Huỷ') }}</td>
                     <td style="display: flex">
                       <a class="btn btn-block btn-danger" style="
                         margin-top: 0;
@@ -75,6 +76,9 @@
               </table>
                 <div class="clear"></div>
             </div>
+            @else
+              Xin hãy đăng nhập để sử dụng chức năng này
+            @endif
         </div>
     </div>
 </div>

@@ -10,17 +10,17 @@
                 @foreach($carsBySearch as $c)
                 <div class="grid_1_of_3 images_1_of_3">
                     <div class="grid_1">
-                        <a href="/xe/{{ $c->slug }}-{{ $c->id }}"><img style="height:136px" src="{{ \Storage::url($c->img) }}" title="continue reading" alt=""></a>
+                        <a href="/xe/{{ $c->ten_url }}-{{ $c->id }}"><img style="height:136px" src="{{ \Storage::url($c->anh) }}" title="continue reading" alt=""></a>
                         <div class="grid_desc">
-                            <p class="title">{{ $c->title }}</p>
+                            <p class="title">{{ $c->ten_hien_thi }}</p>
                             <div class="price">
-                                <span class="reducedfrom">{{ number_format($c->price, 0, ", ", ".") }} đ/ngày</span>
+                                <span class="reducedfrom">{{ number_format($c->gia, 0, ", ", ".") }} đ/ngày</span>
                             </div>
                         <div class="cart-button">
                                 <div class="cart">
-                                    <a href="/xe/{{ $c->slug }}-{{ $c->id }}#dat-xe" class="button"><span>Đặt xe này</span></a>
+                                    <a href="/xe/{{ $c->ten_url }}-{{ $c->id }}#dat-xe" class="button"><span>Đặt xe này</span></a>
                                 </div>
-                                <a href="/xe/{{ $c->slug }}-{{ $c->id }}" class="button"><span>Xem</span></a>
+                                <a href="/xe/{{ $c->ten_url }}-{{ $c->id }}" class="button"><span>Xem</span></a>
                                 <div class="clear"></div>
                             </div>
                         </div>

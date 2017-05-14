@@ -7,26 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'xe';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'desc', 'category_id', 'slug', 'img', 'price', 'status'
+        'ten', 'ten_hien_thi', 'gioi_thieu', 'danh_muc_id', 'ten_url', 'anh', 'gia', 'trang_thai'
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'danh_muc_id', 'id');
     }
 
     public function approvedOrders()
     {
-        return $this->orders()->where('status', config('vars.order.status.approved'));
+        return $this->orders()->where('trang_thai', config('vars.order.status.approved'));
     }
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'car_id');
+        return $this->hasMany(Order::class, 'xe_id');
     }
 }
